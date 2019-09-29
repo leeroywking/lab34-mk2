@@ -59,10 +59,6 @@ class ToDo extends React.Component {
   render() {
     return (
       <>
-        {this.context.user.capabilities.map(item => {
-          return <h1> {item} </h1>
-        })}
-
         <section className="todo">
           <Auth capability="read">
             <div>
@@ -89,7 +85,7 @@ class ToDo extends React.Component {
                       className={`complete-${item.complete.toString()}`}
                       key={item.id}
                     >
-                      <If
+                      <When
                         condition={this.context.user.capabilities.includes(
                           "delete"
                         )}
@@ -98,14 +94,14 @@ class ToDo extends React.Component {
                           {item.text}
                           {console.log(this.context)}
                         </span>
-                      </If>
-                      <If
+                      </When>
+                      <When
                         condition={
                           !this.context.user.capabilities.includes("delete")
                         }
                       >
                         <span>{item.text}</span>
-                      </If>
+                      </When>
                       <Auth capability="update">
                         <button onClick={() => this.toggleEdit(item.id)}>
                           edit

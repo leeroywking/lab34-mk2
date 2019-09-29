@@ -1,5 +1,5 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
 const render = (condition = false, children = null) => {
   return !!condition ? children : null;
@@ -7,7 +7,7 @@ const render = (condition = false, children = null) => {
 
 export const If = props =>
   React.Children.map(props.children, child =>
-    React.cloneElement(child, { condition: props.condition }),
+    React.cloneElement(child, { condition: props.condition })
   );
 
 export const Then = props => render(props.condition, props.children);
